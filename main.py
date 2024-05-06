@@ -1,16 +1,44 @@
-# This is a sample Python script.
+import pygame
+import random
+import time
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# set up pygame modules
+pygame.init()
+pygame.font.init()
+my_font = pygame.font.SysFont("Times New Roman", 15)
+pygame.display.set_caption("Farm")
+
+# set up variables for the display
+SCREEN_HEIGHT = 980
+SCREEN_WIDTH = 1568
+size = (SCREEN_WIDTH, SCREEN_HEIGHT)
+screen = pygame.display.set_mode(size)
+background = pygame.image.load("farm.png")
+
+r = 255
+g = 255
+b = 255
+
+run = True
+
+# -------- Main Program Loop -----------
+while run:
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    # --- Main event loop
+    ## ----- NO BLIT ZONE START ----- ##
+    for event in pygame.event.get():  # User did something
+        if event.type == pygame.QUIT:  # If user clicked close
+            run = False
 
+    ##  ----- NO BLIT ZONE END  ----- ##
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    ## FILL SCREEN, and BLIT here ##
+    screen.blit(background, (0, 0))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    pygame.display.update()
+    ## END OF WHILE LOOP
+
+# Once we have exited the main program loop we can stop the game engine:
+pygame.quit()
+
