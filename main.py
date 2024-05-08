@@ -6,7 +6,7 @@ import time
 pygame.init()
 pygame.font.init()
 my_font = pygame.font.SysFont("Comic Sans", 200)
-my_font_two = pygame.font.SysFont("Comic Sans", 15)
+my_font_two = pygame.font.SysFont("Comic Sans", 30)
 pygame.display.set_caption("Farm")
 
 # set up variables for the display
@@ -16,17 +16,17 @@ size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 background = pygame.image.load("farm.png")
 title = "Carrot"
-left = "Store"
-right = "Farm"
-left_arrow = "<---"
-right_arrow = "--->"
+start = "Play"
+click = False
+
+#rectangle
+color = (255, 255, 255)
+rectangle = pygame.Rect(778, 560, 60, 50)
+pygame.draw.rect(background, color, pygame.Rect(768, 555, 75, 60))
 
 #render
 display_title = my_font.render(title, True, (0, 0, 0))
-display_left = my_font_two.render(left, True, (0, 0, 0))
-display_right = my_font_two.render(right, True, (0, 0, 0))
-display_left_arrow = my_font_two.render(left_arrow, True, (0, 0, 0))
-display_right_arrow = my_font_two.render(right_arrow, True, (0, 0, 0))
+display_start = my_font_two.render(start, True, (0, 0, 0))
 
 run = True
 
@@ -37,6 +37,9 @@ while run:
     # --- Main event loop
     ## ----- NO BLIT ZONE START ----- ##
     for event in pygame.event.get():  # User did something
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if rectangle.collidepoint(event.pos):
+                click = True
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
 
@@ -45,11 +48,7 @@ while run:
     ## FILL SCREEN, and BLIT here ##
     screen.blit(background, (0, 0))
     screen.blit(display_title, (500, 30))
-    screen.blit(display_left, (10, 490))
-    screen.blit(display_right, (1510, 490))
-    screen.blit(display_left_arrow, ())
-    screen.blit(display_right_arrow, ())
-
+    screen.blit(display_start, (780, 560))
     pygame.display.update()
     ## END OF WHILE LOOP
 
