@@ -15,6 +15,7 @@ SCREEN_WIDTH = 1568
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 background = pygame.image.load("farm.png")
+farm = pygame.image.load()
 title = "Carrot"
 start = "Play"
 click = False
@@ -40,15 +41,19 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if rectangle.collidepoint(event.pos):
                 click = True
+
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
 
     ##  ----- NO BLIT ZONE END  ----- ##
 
     ## FILL SCREEN, and BLIT here ##
-    screen.blit(background, (0, 0))
-    screen.blit(display_title, (500, 30))
-    screen.blit(display_start, (780, 560))
+    if click == False:
+        screen.blit(background, (0, 0))
+        screen.blit(display_title, (500, 30))
+        screen.blit(display_start, (780, 560))
+    if click == True:
+        screen.blit(, (0, 0))
     pygame.display.update()
     ## END OF WHILE LOOP
 
