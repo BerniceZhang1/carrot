@@ -15,7 +15,8 @@ SCREEN_WIDTH = 1568
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 background = pygame.image.load("farm.png")
-farm = pygame.image.load()
+start_button = pygame.image.load("play_button.png")
+# farm = pygame.image.load()
 title = "Carrot"
 start = "Play"
 click = False
@@ -23,7 +24,7 @@ click = False
 #rectangle
 color = (255, 255, 255)
 rectangle = pygame.Rect(778, 560, 60, 50)
-pygame.draw.rect(background, color, pygame.Rect(768, 555, 75, 60))
+# pygame.draw.rect(background, color, pygame.Rect(768, 555, 132, 262))
 
 #render
 display_title = my_font.render(title, True, (0, 0, 0))
@@ -40,6 +41,7 @@ while run:
     for event in pygame.event.get():  # User did something
         if event.type == pygame.MOUSEBUTTONDOWN:
             if rectangle.collidepoint(event.pos):
+                print("nice")
                 click = True
 
         if event.type == pygame.QUIT:  # If user clicked close
@@ -51,9 +53,9 @@ while run:
     if click == False:
         screen.blit(background, (0, 0))
         screen.blit(display_title, (500, 30))
-        screen.blit(display_start, (780, 560))
-    if click == True:
-        screen.blit(, (0, 0))
+        screen.blit(start_button, (680, 520))
+    # if click == True:
+    #     screen.blit(, (0, 0))
     pygame.display.update()
     ## END OF WHILE LOOP
 
