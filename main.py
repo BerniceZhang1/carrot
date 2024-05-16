@@ -1,6 +1,8 @@
 import pygame
 import random
 import time
+from button import Button
+
 
 # set up pygame modules
 pygame.init()
@@ -21,14 +23,11 @@ title = "Carrot"
 start = "Play"
 click = False
 
-#rectangle
-color = (255, 255, 255)
-rectangle = pygame.Rect(778, 560, 60, 50)
-# pygame.draw.rect(background, color, pygame.Rect(768, 555, 132, 262))
-
 #render
 display_title = my_font.render(title, True, (0, 0, 0))
 display_start = my_font_two.render(start, True, (0, 0, 0))
+
+s = Button(680, 520)
 
 run = True
 
@@ -40,8 +39,7 @@ while run:
     ## ----- NO BLIT ZONE START ----- ##
     for event in pygame.event.get():  # User did something
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if rectangle.collidepoint(event.pos):
-                print("nice")
+            if s.rect.collidepoint(event.pos):
                 click = True
 
         if event.type == pygame.QUIT:  # If user clicked close
@@ -53,9 +51,11 @@ while run:
     if click == False:
         screen.blit(background, (0, 0))
         screen.blit(display_title, (500, 30))
-        screen.blit(start_button, (680, 520))
-    # if click == True:
-    #     screen.blit(, (0, 0))
+        screen.blit(s.image, s.rect)
+    if click == True:
+        screen.fill((0, 0, 0))
+
+        # screen.blit(, (0, 0))
     pygame.display.update()
     ## END OF WHILE LOOP
 
