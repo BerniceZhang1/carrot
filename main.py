@@ -18,6 +18,7 @@ size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 background = pygame.image.load("farm.png")
 start_button = pygame.image.load("play_button.png")
+save_button = pygame.image.load("save_button.png")
 # farm = pygame.image.load()
 title = "Carrot"
 start = "Play"
@@ -54,6 +55,7 @@ while run:
         screen.blit(s.image, s.rect)
     if click == True:
         screen.fill((0, 0, 0))
+        screen.blit(save_button, (1200, 900))
 
         # screen.blit(, (0, 0))
     pygame.display.update()
