@@ -12,13 +12,13 @@ my_font_two = pygame.font.SysFont("Comic Sans", 30)
 pygame.display.set_caption("Farm")
 
 # set up variables for the display
-SCREEN_HEIGHT = 980
-SCREEN_WIDTH = 1568
+SCREEN_HEIGHT = 950
+SCREEN_WIDTH = 1500
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
-background = pygame.image.load("farm.png")
+# background = pygame.image.load("farm.png")
 start_button = pygame.image.load("play_button.png")
-save_button = pygame.image.load("save_button.png")
+bathtub = pygame.image.load("bath_tub.png")
 # farm = pygame.image.load()
 title = "Carrot"
 start = "Play"
@@ -50,12 +50,13 @@ while run:
 
     ## FILL SCREEN, and BLIT here ##
     if click == False:
-        screen.blit(background, (0, 0))
+        # screen.blit(background, (0, 0))
+        screen.fill((255, 255, 255))
         screen.blit(display_title, (500, 30))
         screen.blit(s.image, s.rect)
     if click == True:
         screen.fill((0, 0, 0))
-        screen.blit(save_button, (1200, 900))
+        screen.blit(bathtub, (800, 860))
 
         # screen.blit(, (0, 0))
     pygame.display.update()
