@@ -2,6 +2,7 @@ import pygame
 import random
 import time
 from button import Button
+from bath_tub import Bathtub
 
 
 # set up pygame modules
@@ -23,6 +24,7 @@ bathtub = pygame.image.load("bath_tub.png")
 title = "Carrot"
 start = "Play"
 click = False
+start_time = time.time()
 
 #render
 display_title = my_font.render(title, True, (0, 0, 0))
@@ -37,6 +39,7 @@ while run:
 
 
     # --- Main event loop
+    current_time = time.time()
     ## ----- NO BLIT ZONE START ----- ##
     for event in pygame.event.get():  # User did something
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -49,6 +52,7 @@ while run:
     ##  ----- NO BLIT ZONE END  ----- ##
 
     ## FILL SCREEN, and BLIT here ##
+
     if click == False:
         # screen.blit(background, (0, 0))
         screen.fill((255, 255, 255))
@@ -56,7 +60,11 @@ while run:
         screen.blit(s.image, s.rect)
     if click == True:
         screen.fill((0, 0, 0))
-        screen.blit(bathtub, (800, 860))
+        screen.blit(bathtub, (500, 500))
+        current_time = time.time()
+        time_elapsed = round(10 - (current_time - start_time), 2)
+        display_time = my_font_two.render("Time Elapsed: " + str(time_elapsed) + "s", True, (255, 255, 255))
+        screen.blit(display_time, (0, 30))
 
         # screen.blit(, (0, 0))
     pygame.display.update()
