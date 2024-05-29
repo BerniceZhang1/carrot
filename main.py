@@ -3,6 +3,7 @@ import random
 import time
 from button import Button
 from bath_tub import Bathtub
+from bucket import Bucket
 
 
 # set up pygame modules
@@ -20,6 +21,7 @@ screen = pygame.display.set_mode(size)
 # background = pygame.image.load("farm.png")
 start_button = pygame.image.load("play_button.png")
 bathtub = pygame.image.load("bath_tub.png")
+bucket = pygame.image.load("bucket.png")
 # farm = pygame.image.load()
 title = "Carrot"
 start = "Play"
@@ -30,13 +32,18 @@ start_time = time.time()
 display_title = my_font.render(title, True, (0, 0, 0))
 display_start = my_font_two.render(start, True, (0, 0, 0))
 
-s = Button(680, 520)
+s = Button(645, 450)
+b = Bucket(560, 640)
 
 run = True
 
 # -------- Main Program Loop -----------
 while run:
-
+    keys = pygame.key.get_pressed()  # checking pressed keys
+    if keys[pygame.K_d]:
+        b.move_direction("right")
+    if keys[pygame.K_a]:
+        b.move_direction("left")
 
     # --- Main event loop
     current_time = time.time()
@@ -60,13 +67,13 @@ while run:
         screen.blit(s.image, s.rect)
     if click == True:
         screen.fill((0, 0, 0))
-        screen.blit(bathtub, (500, 500))
-        current_time = time.time()
-        time_elapsed = round(10 - (current_time - start_time), 2)
-        display_time = my_font_two.render("Time Elapsed: " + str(time_elapsed) + "s", True, (255, 255, 255))
-        screen.blit(display_time, (0, 30))
+        screen.blit(b.image, b.rect)
+        # current_time = time.time()
+        # time_elapsed = round(10 - (current_time - start_time), 2)
+        # display_time = my_font_two.render("Time Elapsed: " + str(time_elapsed) + "s", True, (255, 255, 255))
+        # screen.blit(display_time, (0, 30))
 
-        # screen.blit(, (0, 0))
+
     pygame.display.update()
     ## END OF WHILE LOOP
 
