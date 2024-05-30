@@ -2,8 +2,9 @@ import pygame
 import random
 import time
 from button import Button
-from bath_tub import Bathtub
+# from bath_tub import Bathtub
 from bucket import Bucket
+from duck import Duck
 
 
 # set up pygame modules
@@ -20,7 +21,7 @@ size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 # background = pygame.image.load("farm.png")
 start_button = pygame.image.load("play_button.png")
-bathtub = pygame.image.load("bath_tub.png")
+# bathtub = pygame.image.load("bath_tub.png")
 bucket = pygame.image.load("bucket.png")
 # farm = pygame.image.load()
 title = "Carrot"
@@ -35,6 +36,16 @@ display_start = my_font_two.render(start, True, (0, 0, 0))
 s = Button(645, 450)
 b = Bucket(560, 640)
 
+# variable for direction
+direction = 1
+
+object = Duck(340, 580)
+
+#Starting speed
+speed_x = 3
+speed_y = 4
+
+
 run = True
 
 # -------- Main Program Loop -----------
@@ -44,6 +55,9 @@ while run:
         b.move_direction("right")
     if keys[pygame.K_a]:
         b.move_direction("left")
+
+    if object.left <= 20:
+
 
     # --- Main event loop
     current_time = time.time()
