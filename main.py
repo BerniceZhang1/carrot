@@ -2,9 +2,10 @@ import pygame
 import random
 import time
 from button import Button
+from water import Water
 # from bath_tub import Bathtub
 from bucket import Bucket
-from duck import Duck
+# from duck import Duck
 
 
 # set up pygame modules
@@ -15,13 +16,14 @@ my_font_two = pygame.font.SysFont("Comic Sans", 30)
 pygame.display.set_caption("Farm")
 
 # set up variables for the display
-SCREEN_HEIGHT = 950
-SCREEN_WIDTH = 1500
+SCREEN_HEIGHT = 649
+SCREEN_WIDTH = 1152
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 # background = pygame.image.load("farm.png")
 start_button = pygame.image.load("play_button.png")
-# bathtub = pygame.image.load("bath_tub.png")
+water = pygame.image.load("water.png")
+water.set_alpha(160)
 bucket = pygame.image.load("bucket.png")
 # farm = pygame.image.load()
 title = "Carrot"
@@ -39,7 +41,7 @@ b = Bucket(560, 640)
 # variable for direction
 direction = 1
 
-object = Duck(340, 580)
+# object = Duck(340, 580)
 
 #Starting speed
 speed_x = 3
@@ -56,7 +58,7 @@ while run:
     if keys[pygame.K_a]:
         b.move_direction("left")
 
-    if object.left <= 20:
+    # if object.left <= 20:
 
 
     # --- Main event loop
@@ -81,6 +83,7 @@ while run:
         screen.blit(s.image, s.rect)
     if click == True:
         screen.fill((0, 0, 0))
+        screen.blit(water, (0, 0))
         screen.blit(b.image, b.rect)
         # current_time = time.time()
         # time_elapsed = round(10 - (current_time - start_time), 2)
