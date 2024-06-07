@@ -27,12 +27,15 @@ title = "Carrot"
 start = "Play"
 click = False
 
+# rectangle = pygame.rect((0, 0, 1250, 750)
+# rectangle.center = (576, 324.5)
+
 # render
 display_title = my_font.render(title, True, (0, 0, 0))
 display_start = my_font_two.render(start, True, (0, 0, 0))
 
 s = Button(645, 450)
-# b = Bucket(560, 640)
+
 
 # variable for direction
 direction = 1
@@ -48,26 +51,38 @@ run = True
 
 # -------- Main Program Loop -----------
 while run:
-    keys = pygame.key.get_pressed()  # checking pressed keys
-    if keys[pygame.K_d]:
-        b.move_direction("right")
-    if keys[pygame.K_a]:
-        b.move_direction("left")
+    # keys = pygame.key.get_pressed()  # checking pressed keys
+    # if keys[pygame.K_d]:
+    #     b.move_direction("right")
+    # if keys[pygame.K_a]:
+    #     b.move_direction("left")
 
-    #side
-    if block.left <= 20 or block.right >= 1130:
-        direction = direction * -1
-        speed_x = randint(1, 8) * direction
-        speed_y = randint(1, 8) * direction
+    #top
+    (x,y) = random.randint(-200, 1300), -100
+    #left side
+    (x1, y1) = -100, random.randint(-100, 750)
+    #right_side
+    (x2, y2) = 1300, random.randint(-100, 750)
+    #bottom_side
+    (x3, y3) = random.randint(-200, 1300), 750
 
-    #bottom and top
-    if block.top <= 20 or block.bottom >= 1130:
-        direction = direction * -1
-        speed_x = randint(1, 8) * direction
-        speed_y = randint(1, 8) * direction
+    coordinate = random.randint
 
-    block.left += speed_x
-    block.top += speed_y
+
+    # #side
+    # if block.left <= 20 or block.right >= 1130:
+    #     direction = direction * -1
+    #     speed_x = randint(1, 8) * direction
+    #     speed_y = randint(1, 8) * direction
+    #
+    # #bottom and top
+    # if block.top <= 20 or block.bottom >= 1130:
+    #     direction = direction * -1
+    #     speed_x = randint(1, 8) * direction
+    #     speed_y = randint(1, 8) * direction
+    #
+    # block.left += speed_x
+    # block.top += speed_y
 
     # --- Main event loop
     current_time = time.time()
