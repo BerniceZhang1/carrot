@@ -11,7 +11,6 @@ class Fish:
         self.delta = 2
 
     def move_fish(self):
-        self.x = self.x - self.delta
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
 
 

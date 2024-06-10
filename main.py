@@ -21,8 +21,10 @@ size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 start_button = pygame.image.load("play_button.png")
 water = pygame.image.load("water.png")
+fish = pygame.image.load("fish.png")
 # makes image transparent
-water.set_alpha(160)
+water.set_alpha(100)
+fish.set_alpha(160)
 title = "Carrot"
 start = "Play"
 click = False
@@ -46,6 +48,25 @@ block = Fish(50, 50)
 speed_x = 3
 speed_y = 4
 
+# start position
+# top
+(x, y) = random.randint(-100, 1300), -100
+# left side
+(x1, y1) = -100, random.randint(-100, 750)
+# right_side
+(x2, y2) = 1300, random.randint(-100, 750)
+# bottom_side
+(x3, y3) = random.randint(-200, 1300), 750
+
+
+start_position = [(x,y), (x1, y1), (x2, y2), (x3, y3)]
+position = random.sample(start_position, 1)
+
+if position == (x, y):
+    fish = pygame.image.load("fish.png")
+
+
+
 
 run = True
 
@@ -57,16 +78,20 @@ while run:
     # if keys[pygame.K_a]:
     #     b.move_direction("left")
 
-    #top
-    (x,y) = random.randint(-200, 1300), -100
-    #left side
-    (x1, y1) = -100, random.randint(-100, 750)
-    #right_side
-    (x2, y2) = 1300, random.randint(-100, 750)
-    #bottom_side
-    (x3, y3) = random.randint(-200, 1300), 750
 
-    coordinate = random.randint
+
+
+    # x = random.randint(-200, 1300)
+    # # left side
+    # x1 = -100
+    # # right_side
+    # x2 = 1300
+    # # bottom_side
+    # x3 = random.randint(-200, 1300)
+    #
+    # coordinate = random.randint(x, x1, x2, x3)
+
+    # if coordinate == (x,y):
 
 
     # #side
@@ -85,7 +110,7 @@ while run:
     # block.top += speed_y
 
     # --- Main event loop
-    current_time = time.time()
+    # current_time = time.time()
     ## ----- NO BLIT ZONE START ----- ##
     for event in pygame.event.get():  # User did something
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -108,7 +133,7 @@ while run:
     if click == True:
         screen.fill((0, 0, 0))
         screen.blit(water, (0, 0))
-        pygame.draw.rect(screen, (0, 255, 0), rectangle)
+
         # screen.blit(b.image, b.rect)
         # current_time = time.time()
         # time_elapsed = round(10 - (current_time - start_time), 2)
