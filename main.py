@@ -4,7 +4,7 @@ from random import randint
 from button import Button
 from water import Water
 from fish import Fish
-
+import random
 
 # set up pygame modules
 pygame.init()
@@ -36,7 +36,10 @@ display_title = my_font.render(title, True, (0, 0, 0))
 display_start = my_font_two.render(start, True, (0, 0, 0))
 
 s = Button(645, 450)
-fish = Fish(780, 450)
+fish = Fish(780, 450, size)
+
+
+fishes = []
 
 run = True
 # -------- Main Program Loop -----------
@@ -58,6 +61,19 @@ while run:
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
     ##  ----- NO BLIT ZONE END  ----- ##
+
+    for fish in fishes:
+        Fish.check_reached_coord(fish)
+        if not(fish.reached_coord):
+            Fish.move_fish(fish)
+        else:
+            fishes.pop(fishes.index(fish))
+
+    for fish in fishes:
+        screen.blit(fish.image, fish.rect)
+
+    if len(fishes) < 4:
+        fishes.append(Fish(size))
 
     ## FILL SCREEN, and BLIT here ##
     if click == False:
