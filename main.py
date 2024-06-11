@@ -1,6 +1,5 @@
 import pygame
 import random
-import time
 from random import randint
 from button import Button
 from water import Water
@@ -15,16 +14,16 @@ my_font_two = pygame.font.SysFont("Comic Sans", 30)
 pygame.display.set_caption("Farm")
 
 # set up variables for the display
-SCREEN_HEIGHT = 649
-SCREEN_WIDTH = 1152
+# SCREEN_HEIGHT = 649
+# SCREEN_WIDTH = 1152
+SCREEN_HEIGHT = 800
+SCREEN_WIDTH = 1300
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 start_button = pygame.image.load("play_button.png")
 water = pygame.image.load("water.png")
-fish = pygame.image.load("fish.png")
 # makes image transparent
-water.set_alpha(100)
-fish.set_alpha(160)
+water.set_alpha(200)
 title = "Carrot"
 start = "Play"
 click = False
@@ -37,109 +36,40 @@ display_title = my_font.render(title, True, (0, 0, 0))
 display_start = my_font_two.render(start, True, (0, 0, 0))
 
 s = Button(645, 450)
-
-
-# variable for direction
-direction = 1
-
-block = Fish(50, 50)
-
-# starting speed
-speed_x = 3
-speed_y = 4
-
-# start position
-# top
-(x, y) = random.randint(-100, 1300), -100
-# left side
-(x1, y1) = -100, random.randint(-100, 750)
-# right_side
-(x2, y2) = 1300, random.randint(-100, 750)
-# bottom_side
-(x3, y3) = random.randint(-200, 1300), 750
-
-
-start_position = [(x,y), (x1, y1), (x2, y2), (x3, y3)]
-position = random.sample(start_position, 1)
-
-if position == (x, y):
-    fish = pygame.image.load("fish.png")
-
-
-
+fish = Fish(780, 450)
 
 run = True
-
 # -------- Main Program Loop -----------
+clock = pygame.time.Clock()
+frame = 0
 while run:
-    # keys = pygame.key.get_pressed()  # checking pressed keys
-    # if keys[pygame.K_d]:
-    #     b.move_direction("right")
-    # if keys[pygame.K_a]:
-    #     b.move_direction("left")
-
-
-
-
-    # x = random.randint(-200, 1300)
-    # # left side
-    # x1 = -100
-    # # right_side
-    # x2 = 1300
-    # # bottom_side
-    # x3 = random.randint(-200, 1300)
-    #
-    # coordinate = random.randint(x, x1, x2, x3)
-
-    # if coordinate == (x,y):
-
-
-    # #side
-    # if block.left <= 20 or block.right >= 1130:
-    #     direction = direction * -1
-    #     speed_x = randint(1, 8) * direction
-    #     speed_y = randint(1, 8) * direction
-    #
-    # #bottom and top
-    # if block.top <= 20 or block.bottom >= 1130:
-    #     direction = direction * -1
-    #     speed_x = randint(1, 8) * direction
-    #     speed_y = randint(1, 8) * direction
-    #
-    # block.left += speed_x
-    # block.top += speed_y
-
     # --- Main event loop
-    # current_time = time.time()
+    clock.tick(60)
+    if frame % 30 == 0:
+        fish.switch_image()
+
+    fish.move_fish()
+
     ## ----- NO BLIT ZONE START ----- ##
     for event in pygame.event.get():  # User did something
         if event.type == pygame.MOUSEBUTTONDOWN:
             if s.rect.collidepoint(event.pos):
                 click = True
-
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
-
     ##  ----- NO BLIT ZONE END  ----- ##
 
     ## FILL SCREEN, and BLIT here ##
-
-
     if click == False:
-        # screen.blit(background, (0, 0))
         screen.fill((255, 255, 255))
         screen.blit(display_title, (500, 30))
         screen.blit(s.image, s.rect)
     if click == True:
         screen.fill((0, 0, 0))
         screen.blit(water, (0, 0))
+        screen.blit(fish.image, fish.rect)
 
-        # screen.blit(b.image, b.rect)
-        # current_time = time.time()
-        # time_elapsed = round(10 - (current_time - start_time), 2)
-        # display_time = my_font_two.render("Time Elapsed: " + str(time_elapsed) + "s", True, (255, 255, 255))
-        # screen.blit(display_time, (0, 30))
-
+    frame += 1
 
     pygame.display.update()
     ## END OF WHILE LOOP
